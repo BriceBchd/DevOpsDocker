@@ -1,0 +1,40 @@
+version: "3.6"
+
+networks:
+  splunknet:
+    driver: bridge
+    attachable: true
+
+volumes:
+  SS-etc:
+
+services:
+  SplunkStandalone:
+    networks:
+      splunknet:
+        aliases:
+          - Master
+    image: splunk/splunk:latest
+    container_name: Master
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=Alex0143
+    ports:
+      - 0.0.0.0:8000:8000
+    volumes:
+      - /appli/data/splunk_standalone\ss_etc:/opt/splunk/etc/
+  SplunkUF:
+    networks:
+      splunknet:
+        aliases:
+          - Forwarder1
+    image: splunk/universalforwarder:latest
+    container_name: UniversalForwarder1
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=changeme1
+      - SPLUNK_STANDALONE_URL=Master
+    ports:
+      - 9997:9997
+    volumes:
+      - /appli/data/splunk_forwarder/sf_etc:/opt/splunk/etc/

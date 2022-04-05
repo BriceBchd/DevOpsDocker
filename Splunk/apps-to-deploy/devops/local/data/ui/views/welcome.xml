@@ -1,0 +1,8 @@
+<dashboard theme="dark">
+  <label>test</label>
+  <row>
+    <html>
+      <h1>Welcome boyzzz !</h1>
+    </html>
+  </row>
+</dashboard>
