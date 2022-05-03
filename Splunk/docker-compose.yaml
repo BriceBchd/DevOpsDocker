@@ -10,11 +10,12 @@ volumes:
 
 services:
   SplunkStandalone:
+    build: ./
     networks:
       splunknet:
         aliases:
           - Master
-    image: splunk/splunk:latest
+    image: splunk:brice
     container_name: Master
     environment:
       - SPLUNK_START_ARGS=--accept-license
@@ -23,7 +24,7 @@ services:
       - 0.0.0.0:8000:8000
       - 8088:8088
     volumes:
-      - /appli/data/splunk_standalone\ss_etc:/opt/splunk/etc/
+      - /appli/data/splunk_standalone/etc:/opt/splunk/etc/
   SplunkUF:
     networks:
       splunknet:

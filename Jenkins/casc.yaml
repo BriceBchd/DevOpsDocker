@@ -1,0 +1,37 @@
+jenkins: 
+  securityRealm: 
+    local:
+      allowsSignup: false 
+      users:
+       - id: ${JENKINS_ADMIN_ID} 
+         password: ${JENKINS_ADMIN_PASSWORD} 
+  
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  
+  remotingSecurity:
+    enabled: true
+
+  nodes:
+    - permanent:
+        name: "static-agent"
+        remoteFS: "/home/jenkins"
+        launcher:
+          jnlp:
+            workDirSettings:
+              disabled: true
+              failIfWorkDirIsMissing: false
+              internalDir: "remoting"
+              workDirPath: "/tmp"
+
+
+security:
+  queueItemAuthenticator:
+    authenticators:
+    - global:
+        strategy: triggeringUsersAuthorizationStrategy
+
+unclassified:
+  location: 
+    url : http://192.168.1.65:8080/

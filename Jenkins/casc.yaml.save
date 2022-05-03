@@ -1,0 +1,4 @@
+jenkins: unclassified: securityRealm: location: local: url: http://192.168.1.65:8080/ allowsSignup: false 
+      users:
+       - id: ${JENKINS_ADMIN_ID} password: ${JENKINS_ADMIN_PASSWORD} unclassified:
+  ...
