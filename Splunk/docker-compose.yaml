@@ -19,7 +19,7 @@ services:
     container_name: Master
     environment:
       - SPLUNK_START_ARGS=--accept-license
-      - SPLUNK_PASSWORD=Alex0143
+      - SPLUNK_PASSWORD=changeme123
     ports:
       - 0.0.0.0:8000:8000
       - 8088:8088
